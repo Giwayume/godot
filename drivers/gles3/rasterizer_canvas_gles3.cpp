@@ -1539,15 +1539,15 @@ void RasterizerCanvasGLES3::_new_batch(bool &r_batch_broken) {
 }
 
 void RasterizerCanvasGLES3::_enable_attributes(uint32_t p_start, bool p_primitive, uint32_t p_rate) {
-	uint32_t split = p_primitive ? 11 : 12;
-	for (uint32_t i = 6; i < split; i++) {
+	uint32_t split = p_primitive ? 13 : 14;
+	for (uint32_t i = 8; i < split; i++) {
 		glEnableVertexAttribArray(i);
-		glVertexAttribPointer(i, 4, GL_FLOAT, GL_FALSE, sizeof(InstanceData), CAST_INT_TO_UCHAR_PTR(p_start + (i - 6) * 4 * sizeof(float)));
+		glVertexAttribPointer(i, 4, GL_FLOAT, GL_FALSE, sizeof(InstanceData), CAST_INT_TO_UCHAR_PTR(p_start + (i - 8) * 4 * sizeof(float)));
 		glVertexAttribDivisor(i, p_rate);
 	}
-	for (uint32_t i = split; i <= 13; i++) {
+	for (uint32_t i = split; i <= 15; i++) {
 		glEnableVertexAttribArray(i);
-		glVertexAttribIPointer(i, 4, GL_UNSIGNED_INT, sizeof(InstanceData), CAST_INT_TO_UCHAR_PTR(p_start + (i - 6) * 4 * sizeof(float)));
+		glVertexAttribIPointer(i, 4, GL_UNSIGNED_INT, sizeof(InstanceData), CAST_INT_TO_UCHAR_PTR(p_start + (i - 8) * 4 * sizeof(float)));
 		glVertexAttribDivisor(i, p_rate);
 	}
 }
